@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 const ResetPassword = () => {
     const { token } = useParams();
-    const navigate = useNavigate(); // Hook to navigate programmatically
     const [newPassword, setNewPassword] = useState('');
     const [message, setMessage] = useState('');
 
