@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 
 const ResetPassword = () => {
     const { token } = useParams();
     const [newPassword, setNewPassword] = useState('');
     const [message, setMessage] = useState('');
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -17,12 +17,9 @@ const ResetPassword = () => {
         }
 
         try {
-            const res = await axios.post(`http://localhost:5000/reset-password/${token}`, { newPassword });
+            const res = await axios.post(`https://password-reset-backend-y39v.onrender.com/reset-password/${token}`, { newPassword });
             if (res.status === 200) {
                 setMessage('Your password has been successfully reset!');
-                setTimeout(() => {
-                    navigate('/login'); // Redirect to login after reset
-                }, 2000);
             }
         } catch (err) {
             setMessage('Failed to reset the password. Please try again.');
@@ -45,6 +42,7 @@ const ResetPassword = () => {
                     />
                 </div>
                 <button type="submit" className="btn btn-primary">Reset Password</button>
+                <Link to="/login">if you changed your password, click this Link!!!</Link>
             </form>
         </div>
     );
