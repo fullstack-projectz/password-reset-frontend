@@ -15,7 +15,7 @@ const ForgotPassword = () => {
                 setMessage('A reset link has been sent to your email.');
             }
         } catch (err) {
-            setMessage('Failed to send reset link. Please try again.');
+            setMessage('EmailId is not registered Or invalid credentials.');
         }
     };
 

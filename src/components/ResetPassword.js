@@ -24,7 +24,7 @@ const ResetPassword = () => {
                 { newPassword },
                 {
                     headers: {
-                        'Content-Type': 'application/json', // Explicitly set Content-Type
+                        'Content-Type': 'application/json',
                     },
                 }
             );
@@ -66,7 +66,7 @@ const ResetPassword = () => {
             </form>
             {isSuccess && (
                 <div className="mt-3">
-                    <Link to="/login" className="btn btn-link">
+                    <Link to="/" className="btn btn-link">
                         Click here to login after resetting your password!
                     </Link>
                 </div>
