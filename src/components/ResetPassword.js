@@ -21,7 +21,12 @@ const ResetPassword = () => {
         try {
             const res = await axios.post(
                 `https://password-reset-backend-y39v.onrender.com/reset-password/${token}`,
-                { newPassword }
+                { newPassword },
+                {
+                    headers: {
+                        'Content-Type': 'application/json', // Explicitly set Content-Type
+                    },
+                }
             );
             if (res.status === 200) {
                 setMessage('Your password has been successfully reset!');
@@ -30,7 +35,7 @@ const ResetPassword = () => {
         } catch (err) {
             console.error(err);
             const errorMessage =
-                err.response?.data?.message || 'Failed to reset the password. Please try again.';
+                err.response?.data?.error || 'Failed to reset the password. Please try again.';
             setMessage(errorMessage);
             setIsSuccess(false);
         }
