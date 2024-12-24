@@ -1,29 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useParams, Link } from 'react-router-dom';
 
 const ResetPassword = () => {
     const { token } = useParams();
     const [newPassword, setNewPassword] = useState('');
     const [message, setMessage] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Check if the new password meets the length requirement
         if (newPassword.length < 6) {
             setMessage('Password should be at least 6 characters long.');
             return;
         }
 
         try {
-            const res = await axios.post(`https://password-reset-backend-y39v.onrender.com/reset-password/${token}`, { newPassword });
-
+            const res = await axios.post(`http://localhost:5000/reset-password/${token}`, { newPassword });
             if (res.status === 200) {
                 setMessage('Your password has been successfully reset!');
+                setTimeout(() => {
+                    navigate('/login'); // Redirect to login after reset
+                }, 2000);
             }
         } catch (err) {
-            console.error(err);
             setMessage('Failed to reset the password. Please try again.');
         }
     };
@@ -44,8 +45,6 @@ const ResetPassword = () => {
                     />
                 </div>
                 <button type="submit" className="btn btn-primary">Reset Password</button>
-                <br></br>
-                <Link to="/">If you changed your Password, click this!!!</Link>
             </form>
         </div>
     );
