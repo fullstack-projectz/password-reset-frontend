@@ -9,7 +9,11 @@ const ForgotPassword = () => {
         e.preventDefault();
         try {
             const res = await axios.post('https://password-reset-backend-y39v.onrender.com/forgot-password', { email });
-            setMessage('A reset link has been sent to your email.');
+
+            if (res.status === 200) {
+
+                setMessage('A reset link has been sent to your email.');
+            }
         } catch (err) {
             setMessage('Failed to send reset link. Please try again.');
         }
