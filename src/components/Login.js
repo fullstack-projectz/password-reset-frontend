@@ -24,7 +24,7 @@ const Login = () => {
             // Check if err.response is defined and handle accordingly
             if (err.response) {
                 if (err.response.status === 400) {
-                    setMessage('Your email is not registered. Please sign up.');
+                    setMessage('Your email is not registered or Invaild credentails');
                 } else {
                     setMessage('Invalid credentials, please try again.');
                 }
