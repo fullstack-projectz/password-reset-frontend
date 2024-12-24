@@ -63,7 +63,7 @@ const Login = () => {
                 </div>
                 <button type="submit" className="btn btn-primary">Login</button>
                 <br />
-                <a href="/forgot-password">Forgot Password?</a>
+                <Link to="/forgot-password">Forgot Password?</Link>
                 <br />
                 {/* Use Link from react-router-dom for navigation */}
                 <Link to="/signup">Don't have an account? Sign Up</Link>
